@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<SettingViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ServiceIP>127.0.0.1</ServiceIP>
+  <ServicePort>7789</ServicePort>
+  <IsAutoCheckAlive>true</IsAutoCheckAlive>
+  <CustomThreadNumber>10000</CustomThreadNumber>
+  <IsFsatTransmission>false</IsFsatTransmission>
+  <IsAutoReceive>true</IsAutoReceive>
+  <SleepTime>1</SleepTime>
+  <BreakpointResume>true</BreakpointResume>
+  <ServiceReceiveDir>ServiceReceiveDir\</ServiceReceiveDir>
+</SettingViewModel>

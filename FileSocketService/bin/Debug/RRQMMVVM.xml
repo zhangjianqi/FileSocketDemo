@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RRQMMVVM</name>
+    </assembly>
+    <members>
+        <member name="T:RRQMMVVM.RegistMethodAttribute">
+            <summary>
+            注册为消息
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.RegistMethodAttribute.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.RegistMethodAttribute.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+        </member>
+        <member name="P:RRQMMVVM.RegistMethodAttribute.Token">
+            <summary>
+            标识
+            </summary>
+        </member>
+        <member name="T:RRQMMVVM.MessageRegistType">
+            <summary>
+            消息注册类型
+            </summary>
+        </member>
+        <member name="F:RRQMMVVM.MessageRegistType.Both">
+            <summary>
+            全部
+            </summary>
+        </member>
+        <member name="F:RRQMMVVM.MessageRegistType.View">
+            <summary>
+            View
+            </summary>
+        </member>
+        <member name="F:RRQMMVVM.MessageRegistType.ViewModel">
+            <summary>
+            ViewModel
+            </summary>
+        </member>
+        <member name="F:RRQMMVVM.MessageRegistType.None">
+            <summary>
+            不注册消息
+            </summary>
+        </member>
+        <member name="T:RRQMMVVM.MessageNotFoundException">
+            <summary>
+            未找到消息异常类
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.MessageNotFoundException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mes"></param>
+        </member>
+        <member name="T:RRQMMVVM.MessageRegisteredException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.MessageRegisteredException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mes"></param>
+        </member>
+        <member name="T:RRQMMVVM.DelegateCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RRQMMVVM.ExecuteCommand">
+            <summary>
+            绑定命令
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand.#ctor(RRQMMVVM.DelegateCommand)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="E:RRQMMVVM.ExecuteCommand.CanExecuteChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand.CanExecute(System.Object)">
+            <summary>
+            执行测试
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand.Execute(System.Object)">
+            <summary>
+            执行
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:RRQMMVVM.DelegateCommand`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:RRQMMVVM.ExecuteCommand`1">
+            <summary>
+            绑定有参数命令
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand`1.#ctor(RRQMMVVM.DelegateCommand{`0})">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="E:RRQMMVVM.ExecuteCommand`1.CanExecuteChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand`1.CanExecute(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand`1.Execute(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:RRQMMVVM.Messenger">
+            <summary>
+            消息通知类
+            </summary>
+        </member>
+        <member name="P:RRQMMVVM.Messenger.Default">
+            <summary>
+            默认单例实例
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.Messenger.Register(System.Object,System.String,System.Action)">
+            <summary>
+            注册消息
+            </summary>
+            <param name="register"></param>
+            <param name="token"></param>
+            <param name="action"></param>
+            <exception cref="T:RRQMMVVM.MessageRegisteredException"></exception>
+        </member>
+        <member name="M:RRQMMVVM.Messenger.Register(System.Object,System.String,System.Reflection.MethodInfo)">
+            <summary>
+            注册消息
+            </summary>
+            <param name="register"></param>
+            <param name="token"></param>
+            <param name="methodInfo"></param>
+            <exception cref="T:RRQMMVVM.MessageRegisteredException"></exception>
+        </member>
+        <member name="M:RRQMMVVM.Messenger.Register``1(System.Object,System.String,System.Action{``0})">
+            <summary>
+            注册消息
+            </summary>
+            <typeparam name="T">参数类型</typeparam>
+            <param name="register"></param>
+            <param name="token"></param>
+            <param name="action"></param>
+            <exception cref="T:RRQMMVVM.MessageRegisteredException"></exception>
+        </member>
+        <member name="M:RRQMMVVM.Messenger.Register``2(System.Object,System.String,System.Func{``0,``1})">
+            <summary>
+            注册
+            </summary>
+            <typeparam name="T">参数类型</typeparam>
+            <typeparam name="TReturn">返回值类型</typeparam>
+            <param name="register"></param>
+            <param name="token"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:RRQMMVVM.Messenger.Register``1(System.Object,System.String,System.Func{``0})">
+            <summary>
+            注册
+            </summary>
+            <typeparam name="TReturn">返回值类型</typeparam>
+            <param name="register"></param>
+            <param name="token"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:RRQMMVVM.Messenger.Unregister(System.Object)">
+            <summary>
+            卸载消息
+            </summary>
+            <param name="register"></param>
+        </member>
+        <member name="M:RRQMMVVM.Messenger.Send(System.String,System.Object[])">
+            <summary>
+            发送消息
+            </summary>
+            <param name="token"></param>
+            <param name="parameters"></param>
+            <exception cref="T:RRQMMVVM.MessageNotFoundException"></exception>
+        </member>
+        <member name="M:RRQMMVVM.Messenger.Send``1(System.String,System.Object[])">
+            <summary>
+            发送消息
+            </summary>
+            <typeparam name="T">返回值类型</typeparam>
+            <param name="token"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+            <exception cref="T:RRQMMVVM.MessageNotFoundException"></exception>
+        </member>
+        <member name="T:RRQMMVVM.RRQMList`1">
+            <summary>
+            继承ObservableCollection的集合
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:RRQMMVVM.RRQMList`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.RRQMList`1.#ctor(System.Collections.Generic.List{`0})">
+            <summary>
+            
+            </summary>
+            <param name="list"></param>
+        </member>
+        <member name="M:RRQMMVVM.RRQMList`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="collection"></param>
+        </member>
+        <member name="T:RRQMMVVM.TokenInstance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RRQMMVVM.ViewModelBase">
+            <summary>
+            ViewModel基类
+            </summary>
+        </member>
+        <member name="E:RRQMMVVM.ViewModelBase.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ViewModelBase.OnPropertyChanged(System.String)">
+            <summary>
+            属性改变时
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="P:RRQMMVVM.ViewModelBase.IsInDesignMode">
+            <summary>
+            判断是不是设计器模式
+            </summary>
+        </member>
+        <member name="P:RRQMMVVM.ViewModelBase.View">
+            <summary>
+            目标View
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ViewModelBase.UIInvoke(System.Action)">
+            <summary>
+            UI线程调用
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="T:RRQMMVVM.SimpleIoc">
+            <summary>
+            ViewModelLocator基类
+            </summary>
+        </member>
+        <member name="P:RRQMMVVM.SimpleIoc.Default">
+            <summary>
+            默认单例实例
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.SimpleIoc.Register(System.Windows.FrameworkElement,RRQMMVVM.ViewModelBase,RRQMMVVM.MessageRegistType)">
+            <summary>
+            注册
+            </summary>
+            <param name="element"></param>
+            <param name="viewModel"></param>
+            <param name="messageRegistType"></param>
+        </member>
+        <member name="M:RRQMMVVM.SimpleIoc.Register(System.String,System.Windows.FrameworkElement,RRQMMVVM.ViewModelBase,RRQMMVVM.MessageRegistType)">
+            <summary>
+            注册
+            </summary>
+            <param name="key"></param>
+            <param name="element"></param>
+            <param name="viewModel"></param>
+            <param name="messageRegistType"></param>
+        </member>
+        <member name="M:RRQMMVVM.SimpleIoc.GetViewModelInstance``1">
+            <summary>
+            获取ViewModel
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMMVVM.SimpleIoc.GetViewModelInstance``1(System.String)">
+            <summary>
+            获取ViewModel
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMMVVM.ViewModelUserControl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:RRQMMVVM.ViewModelUserControl.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ViewModelUserControl.OnPropertyChanged(System.String)">
+            <summary>
+            属性改变时
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:RRQMMVVM.ViewModelWindows">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:RRQMMVVM.ViewModelWindows.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ViewModelWindows.OnPropertyChanged(System.String)">
+            <summary>
+            属性改变时
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+    </members>
+</doc>

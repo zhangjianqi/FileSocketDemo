@@ -1,0 +1,2277 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RRQMSocketFramework</name>
+    </assembly>
+    <members>
+        <member name="T:RRQMSocket.ServerMode">
+            <summary>
+            选择服务器模式，如果并发连接数少，且执行时间较长，可选择一个阻塞式多线程接收，
+            如果并发连接数多，且执行时间短，数据交互简单，可用单线程接收处理
+            也可以选择用户自定义，让每个线程管理多个客户端。
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.ServerMode.SingleThread">
+            <summary>
+            单线程模式
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.ServerMode.CustomThread">
+            <summary>
+            用户自定义(通过设置属性“CellManageNum”)
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.ServerMode.Multithreading">
+            <summary>
+            多线程模式
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.TransferType">
+            <summary>
+            传输类型
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.TransferType.None">
+            <summary>
+            无下载
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.TransferType.Upload">
+            <summary>
+            上传
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.TransferType.Download">
+            <summary>
+            下载
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.SerializeType">
+            <summary>
+            序列化类型
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.SerializeType.BinarySerialize">
+            <summary>
+            二进制序列化
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.SerializeType.XmlSerialize">
+            <summary>
+            xml序列化
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket">
+            <summary>
+            通讯基类
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMShowMesEventHandler">
+            <summary>
+            显示信息
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMObjectEventHandler">
+            <summary>
+            数据对象
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMWaitObjectEventHandler">
+            <summary>
+            数据对象
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMByteEventHandler">
+            <summary>
+            字节数据
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMFileEventHandler">
+            <summary>
+            文件处理
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMReceiveFileEventHandler">
+            <summary>
+            接收文件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMTimerEventHandler">
+            <summary>
+            轮循时间
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMEventHandler">
+            <summary>
+            通用无参
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMSocketEventHandler">
+            <summary>
+            传递通讯器
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMSendFileEventHandler">
+            <summary>
+            发送文件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMReceiveByteEventHandler">
+            <summary>
+            自定义接收字节
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMFileFinishedEventHandler">
+            <summary>
+            完成发送
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMRequestDownloadEventHandler">
+            <summary>
+            请求文件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMTransferFileMessageEventHandler">
+            <summary>
+            传输文件错误
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:RRQMSocket.BaseSocket.RRQMEveryTransferEventHandler">
+            <summary>
+            每次传输
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:RRQMSocket.BaseSocket.disposable">
+            <summary>
+            是否释放资源
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.BaseSocket.streamPositionByte">
+            <summary>
+            流位置数组
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.BaseSocket.ReadBuffer">
+            <summary>
+            读取字符串
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.BaseSocket.SocketSend(System.Net.Sockets.Socket,System.Int32,System.String)">
+            <summary>
+            发送简单协议信息
+            </summary>
+            <param name="socket"></param>
+            <param name="agreement"></param>
+            <param name="text"></param>
+        </member>
+        <member name="M:RRQMSocket.BaseSocket.SocketSend(System.Net.Sockets.Socket,System.Int32)">
+            <summary>
+            发送简单协议状态
+            </summary>
+            <param name="socket"></param>
+            <param name="agreement"></param>
+        </member>
+        <member name="M:RRQMSocket.BaseSocket.SocketSend(System.Net.Sockets.Socket,System.Int32,System.Int64)">
+            <summary>
+            发送流位置
+            </summary>
+            <param name="socket"></param>
+            <param name="agreement"></param>
+            <param name="number"></param>
+        </member>
+        <member name="M:RRQMSocket.BaseSocket.SocketSend(System.Net.Sockets.Socket,System.Int32,System.Byte[])">
+            <summary>
+            发送字节
+            </summary>
+            <param name="socket"></param>
+            <param name="agreement"></param>
+            <param name="dataBuffer"></param>
+        </member>
+        <member name="M:RRQMSocket.BaseSocket.CreatNewFile(RRQMSocket.SocketFileInfo,System.String)">
+            <summary>
+            创建空壳文件
+            </summary>
+            <param name="SocketFileInfo"></param>
+            <param name="path"></param>
+        </member>
+        <member name="M:RRQMSocket.BaseSocket.WriteFile(System.IO.FileStream,System.Byte[],System.Int64,System.Int32,System.Int32)">
+            <summary>
+            将流写入文件
+            </summary>
+            <param name="stream">文件流</param>
+            <param name="buffer">缓存区</param>
+            <param name="streamPosition">写入流开始位置</param>
+            <param name="offset">缓存区偏移</param>
+            <param name="count">缓存区长度</param>   
+        </member>
+        <member name="M:RRQMSocket.BaseSocket.ConvertStreamPosition(System.Byte[])">
+            <summary>
+            返回转换后的流位置
+            </summary>
+            <param name="buffer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.BaseSocket.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.FileInfo">
+            <summary>
+            文件信息基类
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileInfo.FileName">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileInfo.FileLength">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileInfo.FilePath">
+            <summary>
+            文件路径
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileInfo.FileHash">
+            <summary>
+            文件哈希值
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileInfo.FileFlag">
+            <summary>
+            文件标志
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.FastTransferFile">
+            <summary>
+            快速上传文件类
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FastTransferFile.Add(RRQMSocket.FileInfo,System.String)">
+            <summary>
+            添加文件
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="filePath"></param>
+        </member>
+        <member name="M:RRQMSocket.FastTransferFile.Search(RRQMSocket.FileInfo)">
+            <summary>
+            匹配文件信息
+            </summary>
+            <param name="fileInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.FastTransferFile.Remove(RRQMSocket.FileInfo)">
+            <summary>
+            移除
+            </summary>
+            <param name="fileInfo"></param>
+        </member>
+        <member name="M:RRQMSocket.FastTransferFile.Clear">
+            <summary>
+            清除
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.ResultStatus">
+            <summary>
+            状态类
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.ResultStatus.Message">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.ResultStatus.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.SimpleSocketCliectCollection">
+            <summary>
+            简单客户端集合
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.TransferFileCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.TransferFileInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.TransferFileInfo.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileInfo.FileInfo">
+            <summary>
+            文件信息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileInfo.IsPermitTransfer">
+            <summary>
+            是否允许传输
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileInfo.Restart">
+            <summary>
+            是否重新传输
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.TransferFileStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileStatus.FileInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileStatus.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.SocketCliectCollection">
+            <summary>
+            客户端集合
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.WaitResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.WaitResult.index">
+            <summary>
+            索引
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.WaitResult.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.ByteEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.ByteEventArgs.DataBytes">
+            <summary>
+            字节
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.EveryTransferArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.EveryTransferArgs.Agreement">
+            <summary>
+            协议头
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.EveryTransferArgs.DataLength">
+            <summary>
+            数据长度
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.FileEventArgs">
+            <summary>
+            文件事件
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileEventArgs.FileInfo">
+            <summary>
+            文件信息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileEventArgs.IsPermitTransfer">
+            <summary>
+            是否允许传输
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileEventArgs.TargetPath">
+            <summary>
+            获取或设置目标文件的最终路径，包含文件名及文件扩展名
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileEventArgs.Flag">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.FileFinishedArgs">
+            <summary>
+            完成发送的参数
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileFinishedArgs.FinishedFile">
+            <summary>
+            完成下载的文件
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileFinishedArgs.TargetFilePath">
+            <summary>
+            完成文件的路径
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.MesEventArgs">
+            <summary>
+            消息事件
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.MesEventArgs.#ctor(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="mes"></param>
+            <param name="flag"></param>
+        </member>
+        <member name="M:RRQMSocket.MesEventArgs.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mes"></param>
+        </member>
+        <member name="M:RRQMSocket.MesEventArgs.#ctor">
+            <summary>
+            直接构造函数
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.MesEventArgs.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.MesEventArgs.MesLevel">
+            <summary>
+            消息级别（0-5,0表示为基本消息，5表示为致命错误）
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.MesEventArgs.Flag">
+            <summary>
+            标志
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.ObjectEventArgs">
+            <summary>
+            传递对象事件
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.ObjectEventArgs.DataObject">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.ReceiveByteArgs">
+            <summary>
+            接收字节
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.ReceiveByteArgs.DataBuffer">
+            <summary>
+            数据数组
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.ReceiveByteArgs.Agreement">
+            <summary>
+            协议
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.TransferFileArgs">
+            <summary>
+            传输文件
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileArgs.StreamPosition">
+            <summary>
+            已接收的流位置
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileArgs.FileInfo">
+            <summary>
+            接收的文件信息（不要手动更改里面任何内容）
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileArgs.TransferProgressValue">
+            <summary>
+            传输文件进度
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.RequestFileStatusArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RequestFileStatusArgs.#ctor(RRQMSocket.RRQMUrl,RRQMSocket.ResultStatus)">
+            <summary>
+            
+            </summary>
+            <param name="Url"></param>
+            <param name="RequestStatus"></param>
+        </member>
+        <member name="P:RRQMSocket.RequestFileStatusArgs.Url">
+            <summary>
+            请求文件资源
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.RequestFileStatusArgs.RequestStatus">
+            <summary>
+            请求状态
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.TransferFileMessageArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.TransferFileMessageArgs.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileMessageArgs.FileInfo">
+            <summary>
+            文件信息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileMessageArgs.Message">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileMessageArgs.DownloadFileList">
+            <summary>
+            下载列表
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TransferFileMessageArgs.TransferType">
+            <summary>
+            传输类型
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.WaitObjectEventArgs">
+            <summary>
+            传递对象事件,并返回
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.WaitObjectEventArgs.ReceivedDataObject">
+            <summary>
+            接收数据
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.WaitObjectEventArgs.ReturnDataObject">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.RRQMClientException">
+            <summary>
+            异常类
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMClientException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:RRQMSocket.RRQMClientException.GetError">
+            <summary>
+            获取错误信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.RRQMException">
+            <summary>
+            若汝棋茗程序集异常类基类
+            </summary>
+        </member>
+        <member name="F:RRQMSocket.RRQMException.error">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:RRQMSocket.RRQMException.GetError">
+            <summary>
+            获取错误信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.RRQMLicenceKeyException">
+            <summary>
+            许可证异常
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMLicenceKeyException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:RRQMSocket.RRQMLicenceKeyException.GetError">
+            <summary>
+            获取错误信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.RRQMOverlengthException">
+            <summary>
+            超长异常
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMOverlengthException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:RRQMSocket.RRQMOverlengthException.GetError">
+            <summary>
+            获取错误信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.RRQMProtocolException">
+            <summary>
+            协议异常
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMProtocolException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:RRQMSocket.RRQMProtocolException.GetError">
+            <summary>
+            获取错误信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.RRQMSerializationException">
+            <summary>
+            序列化异常类
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMSerializationException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:RRQMSocket.RRQMSerializationException.GetError">
+            <summary>
+            获取错误信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.RRQMThreadNullException">
+            <summary>
+            线程为空异常
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMThreadNullException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:RRQMSocket.RRQMThreadNullException.GetError">
+            <summary>
+            获取错误信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.RRQMTimeoutException">
+            <summary>
+            超时异常
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMTimeoutException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:RRQMSocket.RRQMTimeoutException.GetError">
+            <summary>
+            获取错误信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.FileClientConfirmSocket">
+            <summary>
+            文件客户端认证类
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClientConfirmSocket.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClientConfirmSocket.WaitingTime">
+            <summary>
+            等待时间（秒）
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClientConfirmSocket.Account">
+            <summary>
+            连接账号
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClientConfirmSocket.PassWord">
+            <summary>
+            连接密码
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClientConfirmSocket.Flag">
+            <summary>
+            标志
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.RRQMUrl">
+            <summary>
+            请求下载参数
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMUrl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMUrl.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="filePath">文件路径</param>
+        </member>
+        <member name="P:RRQMSocket.RRQMUrl.FileName">
+            <summary>
+            下载文件名
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.RRQMUrl.WaitingTime">
+            <summary>
+            请求等待时间(秒)
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.RRQMUrl.Restart">
+            <summary>
+            是否重新开始
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.RRQMUrl.FilePath">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.RRQMUrl.Flag">
+            <summary>
+            标志
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.RRQMUrl.Equals(RRQMSocket.RRQMUrl)">
+            <summary>
+            判断
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.SocketArgs">
+            <summary>
+            通讯器事件
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketArgs.Socket">
+            <summary>
+            通讯器
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketArgs.Flag">
+            <summary>
+            标志
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.TimerArgs">
+            <summary>
+            隔时间参数
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TimerArgs.DownlaodSpeed">
+            <summary>
+            下载速度
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.TimerArgs.ProgressValue">
+            <summary>
+            下载完成进度
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.SocketFileInfo">
+            <summary>
+            文件信息类
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketFileInfo.Restart">
+            <summary>
+            重新开始
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketFileInfo.Equals(RRQMSocket.SocketFileInfo)">
+            <summary>
+            
+            </summary>
+            <param name="fileInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.DownloadFileCollection">
+            <summary>
+            下载文件队列
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.ConfirmSocket">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.ConfirmSocket.TargetIP">
+            <summary>
+            目标IP
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.ConfirmSocket.TargetPort">
+            <summary>
+            目标端口
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.SystemMessage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SystemMessage.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SystemMessage.Flag">
+            <summary>
+            标志
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.FileClient">
+            <summary>
+            通讯客户端主类
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.#ctor">
+            <summary>
+            无参数构造函数
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.Initialize">
+            <summary>
+            初始化类时加载的公共设置
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.Finalize">
+            <summary>
+            析构函数
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.ReceiveDirectory">
+            <summary>
+            获取或设置默认接收文件的存放目录,后缀必须含有'\\'符号
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.TransferType">
+            <summary>
+            获取下载状态
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.Connected">
+            <summary>
+            获取连接状态
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.IP">
+            <summary>
+            获取连接IP
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.Port">
+            <summary>
+            获取端口号
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.DownloadProgressValue">
+            <summary>
+            获取下载进度
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.UploadProgressValue">
+            <summary>
+            获取上传进度
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.DownloadSpeed">
+            <summary>
+            获取下载速度，单位kb/s
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.UploadSpeed">
+            <summary>
+            获取上传速度，单位kb/s 
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.FileInfo_Download">
+            <summary>
+            获取正在下载的文件信息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.FileInfo_Upload">
+            <summary>
+            获取正在上传的文件信息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileClient.Name">
+            <summary>
+            获取连接的唯一标识
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.ShowErrorMes">
+            <summary>
+            显示错误信息 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.ReceiveSystemMes">
+            <summary>
+            当接收到信息的时候 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.ReceiveObject">
+            <summary>
+            接收到数据对象 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.BeforeDownloadFile">
+            <summary>
+            刚开始下载文件的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.TransferFileError">
+            <summary>
+            传输文件错误
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.ReceiveFileInfo">
+            <summary>
+            收到服务器发来的文件信息的时候 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.BeforeUploadFile">
+            <summary>
+            刚开始上传文件的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.ReceiveFileBlock">
+            <summary>
+            每次接收文件分包的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.SendFileBlock">
+            <summary>
+            每次上传文件分包的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.DownloadFileFinshed">
+            <summary>
+            当文件接收完成时 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.UploadFileFinshed">
+            <summary>
+            当文件上传完成时 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.ConnectedService">
+            <summary>
+            远程异常的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.DisConnectedService">
+            <summary>
+            远程异常的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.ReceiveUserDefinedByte">
+            <summary>
+            用户自定义协议接收 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileClient.EveryReceived">
+            <summary>
+            每次接收任何数据
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.StartReceive">
+            <summary>
+            开始接收线程
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.Connect(RRQMSocket.FileClientConfirmSocket)">
+            <summary>
+            连接服务器
+            </summary>
+            <param name="confirmSocket">验证参数</param>
+            <exception cref="T:RRQMSocket.RRQMTimeoutException">连接超时异常</exception>
+            <exception cref="T:RRQMSocket.RRQMClientException">返回连接异常</exception>
+            <exception cref="T:RRQMSocket.RRQMException">连接异常</exception>
+        </member>
+        <member name="M:RRQMSocket.FileClient.SendUserDefinedByte(System.Int32,System.Byte[])">
+             <summary>
+             发送用户字节
+             </summary>
+             <param name="agreement">发送协议，0-10000为系统协议</param>
+             <param name="userByte">用户字节</param>
+            <exception cref="T:RRQMSocket.RRQMProtocolException">协议头范围异常</exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.FileClient.SendSystemMessage(System.String)">
+             <summary>
+             发送系统消息
+             </summary>
+             <param name="Text">文本</param>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.FileClient.SendSystemMessage(RRQMSocket.SystemMessage)">
+             <summary>
+             发送系统消息
+             </summary>
+             <param name="systemMes">消息</param>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.FileClient.SendObject(System.Object)">
+             <summary>
+             发送数据对象
+             </summary>
+             <param name="DataObject"></param>
+            <exception cref="T:RRQMSocket.RRQMSerializationException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.FileClient.SendObjectWaitRusult(System.Object,System.Int32)">
+            <summary>
+            发送数据对象并等待返回结果
+            </summary>
+            <param name="DataObject">数据对象</param>
+            <param name="WaitTime">等待时间（毫秒）</param>
+            <exception cref="T:RRQMSocket.RRQMTimeoutException"></exception>
+            <exception cref="T:RRQMSocket.RRQMThreadNullException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+            <returns>服务器返回结果</returns>
+        </member>
+        <member name="M:RRQMSocket.FileClient.DownloadFile(RRQMSocket.RRQMUrl)">
+            <summary>
+            请求下载文件
+            </summary>
+            <param name="url">请求参数</param>
+            <exception cref="T:RRQMSocket.RRQMException"> </exception>
+        </member>
+        <member name="M:RRQMSocket.FileClient.UploadFile(RRQMSocket.RRQMUrl)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="url"></param>
+        </member>
+        <member name="M:RRQMSocket.FileClient.ResumeThisDownload">
+            <summary>
+            继续当前下载
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.FileClient.ResumeUpload">
+            <summary>
+            继续上传
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.PauseDownload">
+            <summary>
+            暂停下载
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.PauseUpload">
+            <summary>
+            暂停上传
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.StopThisDownload">
+            <summary>
+            停止当前下载
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.StopAllDownload">
+            <summary>
+            停止所有下载
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.StopUpload">
+            <summary>
+            停止上传
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.SendPosition(System.Int64)">
+            <summary>
+            向服务器发送流位置
+            </summary>
+            <param name="positionMes"></param>
+        </member>
+        <member name="M:RRQMSocket.FileClient.SocketReceive">
+            <summary>
+            开始接收
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileClient.ResolvePackage(System.Byte[])">
+            <summary>
+            解析包
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:RRQMSocket.FileClient.SplitPackage(System.Int32,System.Int32)">
+            <summary>
+            分解包
+            </summary>
+            <param name="index"></param>
+            <param name="r"></param>
+        </member>
+        <member name="M:RRQMSocket.FileClient.SendStreamFile(System.Int64)">
+            <summary>
+            传递流文件
+            </summary>
+            <param name="streamPositoin">流位置</param>
+        </member>
+        <member name="M:RRQMSocket.FileClient.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.FileService">
+            <summary>
+            通讯服务端主类
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileService.#ctor">
+            <summary>
+            服务器高级设置
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.IP">
+            <summary>
+            获取或设置IP
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.Port">
+            <summary>
+            获取或设置端口号
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.IsBind">
+            <summary>
+            获取绑定状态
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.SocketClients">
+            <summary>
+            获取当前连接的所有客户端
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.ServerMode">
+            <summary>
+            获取或设置服务器工作模式
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.HeartbeatEnable">
+            <summary>
+            是否启用心跳服务（如果禁用心跳服务，服务器会立即处理收到的数据，但是设置的一切关于上传、下载的速度都会不起作用，都将以全速传输。）
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.DownloadSpeed">
+            <summary>
+            获取下载速度
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.UploadSpeed">
+            <summary>
+            获取上传速度
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.Account">
+            <summary>
+            获取或设置连接账号
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.LicenceKey">
+            <summary>
+            设置许可证密钥(默认永久，最多可连接10个客户端)
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.PassWord">
+            <summary>
+            获取或设置连接密码
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.CellManageNum">
+             <summary>
+            获取每个线程管理的客户端最大数量（当服务器模式是CustomThread的时候有效）
+             </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.MaxConnection">
+            <summary>
+            获取最大可连接数
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.LicenceDate">
+            <summary>
+            许可证日期
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.UserMessage">
+            <summary>
+            获取已授权用户名
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.BreakpointResume">
+            <summary>
+            是否支持断点续传
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.IsFsatTransmission">
+            <summary>
+            是否支持快速上传
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileService.SleepTime">
+            <summary>
+            当服务器模式是SingleThread和CustomThread时，线程每处理一个客户端休眠的时间(ms)
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.ClientConnected">
+            <summary>
+            有用户连接的时候 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.ClientDisconnected">
+            <summary>
+            有用户断开连接的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.ShowErrorMes">
+            <summary>
+            显示错误信息
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.ReceiveSystemMes">
+            <summary>
+            当接收到系统信息的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.ReceiveObject">
+            <summary>
+            接收数据对象 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.ReceiveObjectThenReturn">
+            <summary>
+            接收数据对象并返回
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.BeforeReceiveFile">
+            <summary>
+            刚开始接受文件的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.BeforeSendFile">
+            <summary>
+            刚开始发送文件的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.ReceiveUserDefinedByte">
+            <summary>
+            用户自定义协议接收 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.SendFileFinished">
+            <summary>
+            当文件发送完 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.ReceiveFileFinished">
+            <summary>
+            当文件接收完成时 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.FileService.DownloadFileListChanged">
+            <summary>
+            当下载文件列表发送改变时 
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileService.BindSocket">
+            <summary>
+            绑定服务器
+            </summary>
+            <exception cref="T:RRQMSocket.RRQMLicenceKeyException">许可证异常</exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.FileService.SendUserDefinedByte(RRQMSocket.SocketClient,System.Int32,System.Byte[])">
+             <summary>
+             发送用户自定义协议字节
+             </summary>
+             <param name="client">目的客户端</param>
+             <param name="agreement">发送协议，0-10000为系统协议</param>
+             <param name="userBytes">用户字节</param>
+             <exception cref="T:System.NullReferenceException"></exception> 
+            <exception cref="T:RRQMSocket.RRQMProtocolException">协议头范围异常</exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.FileService.SendFileInfo(RRQMSocket.SocketClient,RRQMSocket.SocketFileInfo)">
+             <summary>
+             发送文件信息
+             </summary>
+             <param name="client">目的客户端</param>
+             <param name="fileInfo">文件信息</param>
+             <exception cref="T:System.NullReferenceException"></exception> 
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.FileService.SendSystemMessage(RRQMSocket.SocketClient,System.String)">
+             <summary>
+             发送系统消息
+             </summary>
+             <param name="client">目的客户端</param>
+             <param name="Text">文本信息</param>
+             <exception cref="T:System.NullReferenceException"></exception> 
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.FileService.SendSystemMessage(RRQMSocket.SocketClient,RRQMSocket.SystemMessage)">
+             <summary>
+             发送系统消息
+             </summary>
+             <param name="client">目的客户端</param>
+             <param name="systemMes">消息</param>
+             <exception cref="T:System.NullReferenceException"></exception> 
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.FileService.SendObject(RRQMSocket.SocketClient,System.Object)">
+             <summary>
+             发送数据对象
+             </summary>
+             <param name="client">目的客户端</param>
+             <param name="DataObject">数据对象</param>
+             <exception cref="T:System.NullReferenceException"></exception> 
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.FileService.SetHeartbeatEnable(RRQMSocket.SocketClient,System.Boolean)">
+            <summary>
+            独立设置单个客户端实例的心跳模式是否启用
+            </summary>
+            <param name="client">目的客户端</param>
+            <param name="enable">是否启用</param>
+            <exception cref="T:System.NullReferenceException"></exception> 
+        </member>
+        <member name="M:RRQMSocket.FileService.ReceiveUers">
+            <summary>
+            另起线程进行重复接收新用户的连接
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileService.Judgement(System.Object)">
+            <summary>
+            判断客户端，连接密码如果不正确就
+            </summary>
+            <param name="o"></param>
+        </member>
+        <member name="M:RRQMSocket.FileService.SingleReceiveMes(System.Object)">
+            <summary>
+            单线程重复接收信息
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileService.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.SimpleClient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleClient.MaxDataLength">
+            <summary>
+            可接收或发送数据的最大值（Byte）,默认1024
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleClient.Connected">
+            <summary>
+            是否已经连接
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SimpleClient.ReceiveObject">
+            <summary>
+            接收数据对象
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SimpleClient.ReceiveByte">
+            <summary>
+            接收数据字节
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SimpleClient.ReceiveUserDefinedByte">
+             <summary>
+            接收用户自定义协议数据
+             </summary>
+        </member>
+        <member name="M:RRQMSocket.SimpleClient.Connect(RRQMSocket.ConfirmSocket)">
+            <summary>
+            连接服务器
+            </summary>
+            <param name="confirmSocket"></param>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SimpleClient.SendObject(System.Object)">
+            <summary>
+            发送数据对象
+            </summary>
+            <param name="DataObject"></param>
+            <exception cref="T:RRQMSocket.RRQMOverlengthException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SimpleClient.SendObjectWaitRusult(System.Object,System.Int32)">
+            <summary>
+            发送数据对象并等待返回结果
+            </summary>
+            <param name="DataObject">数据对象</param>
+            <param name="WaitTime">等待时间（毫秒）</param>
+            <exception cref="T:RRQMSocket.RRQMTimeoutException"></exception>
+            <exception cref="T:RRQMSocket.RRQMThreadNullException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+            <returns>服务器返回结果</returns>
+        </member>
+        <member name="M:RRQMSocket.SimpleClient.SendBytes(System.Byte[])">
+            <summary>
+            发送数据字节
+            </summary>
+            <param name="DataByte"></param>
+            <exception cref="T:RRQMSocket.RRQMOverlengthException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SimpleClient.SendUserByte(System.Int32,System.Byte[])">
+            <summary>
+            发送用户字节
+            </summary>
+            <param name="agreement">发送协议，0-10000为系统协议</param>
+            <param name="userByte">用户字节</param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.SimpleClient.StartReceive">
+            <summary>
+            开始接收数据
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SimpleClient.ReceiveByte_S(System.Byte[])">
+            <summary>
+            单线程接收用户消息
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SimpleClient.SplitPackage(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            分解包
+            </summary>
+            <param name="dataBuffer"></param>
+            <param name="index"></param>
+            <param name="r"></param>
+        </member>
+        <member name="M:RRQMSocket.SimpleClient.ResolvePackage(System.Byte[])">
+            <summary>
+            解析包
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:RRQMSocket.SimpleClient.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.SimpleService">
+            <summary>
+            简单专业版服务器类型
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SimpleService.#ctor">
+            <summary>
+            专业版
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.IP">
+            <summary>
+            获取或设置IP
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.Port">
+            <summary>
+            获取或设置端口号
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.IsBind">
+            <summary>
+            获取绑定状态
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.SocketClients">
+            <summary>
+            获取当前连接的所有客户端
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.IsTriggerConnectEvent">
+            <summary>
+            有用户连接时是否触发事件
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.ConnectWaitTime">
+            <summary>
+            获取或设置无数据交互时，等待的最长时间(s)
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.LicenceDate">
+            <summary>
+            许可证日期
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.UserName">
+            <summary>
+            获取已授权用户名
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.LicenceKey">
+            <summary>
+            设置许可证
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.MaxDataLength">
+            <summary>
+            可接收或发送数据的最大值（Byte）,默认1024
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SimpleService.SleepTime">
+            <summary>
+            处理一组客户端数据线程休息时间（ms）
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SimpleService.ClientConnected">
+            <summary>
+            有用户连接的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SimpleService.ClientDisconnected">
+            <summary>
+            有用户断开连接的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SimpleService.ReceiveObject">
+            <summary>
+            接收数据对象 
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SimpleService.ReceiveByte">
+            <summary>
+            接收数据字节
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SimpleService.ShowErrorMes">
+            <summary>
+            显示错误消息
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SimpleService.ReceiveUserDefinedByte">
+             <summary>
+            接收用户自定义协议数据
+             </summary>
+        </member>
+        <member name="E:RRQMSocket.SimpleService.ReceiveObjectThenReturn">
+            <summary>
+            接收数据对象并返回
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SimpleService.BindSocket">
+            <summary>
+            建立绑定服务器
+            </summary>
+            <exception cref="T:RRQMSocket.RRQMLicenceKeyException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SimpleService.SendObject(RRQMSocket.SocketClientSimple,System.Object)">
+            <summary>
+            发送数据对象
+            </summary>
+            <param name="client">目的客户端</param>
+            <param name="DataObject">数据对象</param>
+            <exception cref="T:RRQMSocket.RRQMOverlengthException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SimpleService.SendBytes(RRQMSocket.SocketClientSimple,System.Byte[])">
+            <summary>
+            发送字节数组
+            </summary>
+            <param name="client">目的客户端</param>
+            <param name="DataByte">字节数组</param>
+            <exception cref="T:RRQMSocket.RRQMOverlengthException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SimpleService.SendUserDefinedByte(RRQMSocket.SocketClientSimple,System.Int32,System.Byte[])">
+            <summary>
+            发送用户自定义协议字节
+            </summary>
+            <param name="client">目的客户端</param>
+            <param name="agreement">协议头</param>
+            <param name="userByte">用户字节数组</param>
+            <exception cref="T:RRQMSocket.RRQMOverlengthException"></exception>
+            <exception cref="T:RRQMSocket.RRQMProtocolException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SimpleService.SingleReceiveMes(System.Object)">
+            <summary>
+            单线程重复接收信息
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SimpleService.ReceiveUers">
+            <summary>
+            另起线程进行重复接收新用户的连接
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SimpleService.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.SocketClientSimple">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClientSimple.Name">
+            <summary>
+            远程连接地址名
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClientSimple.IP">
+            <summary>
+            IPv4地址
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClientSimple.Port">
+            <summary>
+            端口号
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClientSimple.BreakLink">
+            <summary>
+            是否断开连接
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClientSimple.IsPermaLink">
+            <summary>
+            是否为永久连接
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClientSimple.ReceiveObjectThenReturn">
+            <summary>
+            接收数据对象并返回
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClientSimple.SingleReceiveByte(System.Byte[])">
+            <summary>
+            单线程接收消息
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClientSimple.ReceiveByte_S(System.Byte[])">
+            <summary>
+            单线程接收用户消息
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClientSimple.SplitPackage(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            分解包
+            </summary>
+            <param name="dataBuffer"></param>
+            <param name="index"></param>
+            <param name="r"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClientSimple.ResolvePackage(System.Byte[],System.Int32)">
+            <summary>
+            解析包
+            </summary>
+            <param name="buffer"></param>
+            <param name="r"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClientSimple.SendObject(System.Object)">
+            <summary>
+            发送数据对象
+            </summary>
+            <param name="DataObject"></param>
+            <exception cref="T:RRQMSocket.RRQMOverlengthException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SocketClientSimple.SendBytes(System.Byte[])">
+            <summary>
+            发送字节数组
+            </summary>
+            <param name="DataByte"></param>
+            <exception cref="T:RRQMSocket.RRQMOverlengthException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SocketClientSimple.SendUserDefinedByte(System.Int32,System.Byte[])">
+            <summary>
+            发送用户字节
+            </summary>
+            <param name="agreement">发送协议，0-10000为系统协议</param>
+            <param name="userByte">用户字节</param>
+            <exception cref="T:RRQMSocket.RRQMOverlengthException"></exception>
+            <exception cref="T:RRQMSocket.RRQMProtocolException"></exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SocketClientSimple.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.SocketClient">
+            <summary>
+            已接收的客户端
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.#ctor(System.Net.Sockets.Socket)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="socket">通讯器</param>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.Name">
+            <summary>
+            远程连接地址名
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.IP">
+            <summary>
+            IPv4地址
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.Port">
+            <summary>
+            端口号
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.DownloadProgress">
+            <summary>
+            获取下载进度
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.MaxDownloadSpeed">
+            <summary>
+            每秒最大下载速度（Byte）,不可小于1024
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.MaxUploadloadSpeed">
+            <summary>
+            每秒最大上传速度（Byte）,不可小于1024
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.ConnectionFlag">
+            <summary>
+            连接标志
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.DownloadFileList">
+            <summary>
+            获取下载列表
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.FileInfoSend">
+            <summary>
+            发送文件信息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.FileInfoReceive">
+            <summary>
+            接收文件信息
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.SocketClient.TransferType">
+            <summary>
+            获取传输类型
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.ShowErrorMes">
+            <summary>
+            显示错误信息
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.ReceiveSystemMes">
+            <summary>
+            当接收到系统信息的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.ReceiveObject">
+            <summary>
+            接收数据对象
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.ReceiveObjectThenReturn">
+            <summary>
+            接收数据对象并返回
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.BeforeReceiveFile">
+            <summary>
+            刚开始接受文件的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.BeforeSendFile">
+            <summary>
+            开始发送文件
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.ClientConnected">
+            <summary>
+            有用户连接的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.ClientDisconnected">
+            <summary>
+            有用户断开连接的时候
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.ReceiveUserDefinedByte">
+            <summary>
+            用户自定义协议接收
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.SendFileFinished">
+            <summary>
+            当文件发送完
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.ReceiveFileFinished">
+            <summary>
+            当文件接收完成
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.EveryReceived">
+            <summary>
+            每次接收数据
+            </summary>
+        </member>
+        <member name="E:RRQMSocket.SocketClient.DownloadFileListChanged">
+            <summary>
+            下载文件列表更改时
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.MulitReceiveByte">
+            <summary>
+            多线程阻塞式接收
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.ReceiveByte_M">
+            <summary>
+            多线程接收用户消息
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SingleReceiveByte(System.Byte[])">
+            <summary>
+            单线程接收消息
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.ReceiveByte_S(System.Byte[])">
+            <summary>
+            单线程接收用户消息
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SplitPackage(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            分解包
+            </summary>
+            <param name="dataBuffer"></param>
+            <param name="index"></param>
+            <param name="r"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.ResolvePackage(System.Byte[])">
+            <summary>
+            解析包
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.Agreement_1000(System.Byte[],System.Int32)">
+            <summary>
+            1000表示传递信息
+            </summary>
+            <param name="buffer"></param>
+            <param name="r"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.Agreement_1001(System.Byte[])">
+            <summary>
+            1001表示收到客户端下载请求，准备发送文件信息
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.Agreement_1002(System.Byte[])">
+            <summary>
+            1002表示接收流位置
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.Agreement_1003(System.Byte[])">
+            <summary>
+            1003接收上传文件信息
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.Agreement_1004(System.Byte[])">
+             <summary>
+            1004接收上传文件流
+             </summary>
+             <param name="buffer"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.Agreement_1005(System.Byte[])">
+            <summary>
+            1005接收指令
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.Agreement_1006(System.Byte[])">
+            <summary>
+            1006断开连接
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.Agreement_1007(System.Byte[])">
+            <summary>
+            1007接收数据对象并返回
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.AgreementDefault(System.Byte[],System.Int32)">
+            <summary>
+            自定义接收
+            </summary>
+            <param name="buffer"></param>
+            <param name="agreement"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SendPosition(System.Int64)">
+            <summary>
+            返回流位置
+            </summary>
+            <param name="positionMes"></param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SendStreamFile(System.String,System.Int64)">
+            <summary>
+            文件流传输
+            </summary>
+            <param name="filePath">文件地址</param>
+            <param name="streamPositoin">流位置</param>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SendDownloadFileInfo(RRQMSocket.SocketFileInfo)">
+            <summary>
+            收到请求后发送文件信息
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SendOnline">
+            <summary>
+            测试是否在线
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.GetNowTick">
+            <summary>
+            获取当前时间帧
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SendUserDefinedByte(System.Int32,System.Byte[])">
+             <summary>
+             发送用户自定义协议字节
+             </summary>
+             <param name="agreement">发送协议，0-10000为系统协议</param>
+             <param name="userByte">用户字节</param>
+            <exception cref="T:RRQMSocket.RRQMProtocolException">协议头范围异常</exception>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SendFileInfo(RRQMSocket.SocketFileInfo)">
+            <summary>
+            给客户端发送文件信息
+            </summary>
+            <param name="fileInfo">文件信息</param>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SendSystemMessage(System.String)">
+            <summary>
+            发送系统消息
+            </summary>
+            <param name="Text">文本</param>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SendSystemMessage(RRQMSocket.SystemMessage)">
+            <summary>
+            发送系统消息
+            </summary>
+            <param name="systemMes">消息</param>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.SendObject(System.Object)">
+            <summary>
+            发送数据对象
+            </summary>
+            <param name="DataObject"></param>
+            <exception cref="T:RRQMSocket.RRQMException"></exception>
+        </member>
+        <member name="M:RRQMSocket.SocketClient.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.DataLock">
+            <summary>
+            数据锁
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.DataLock.EncryptDES(System.Byte[],System.String)">
+            <summary>
+            使用3DES加密
+            </summary>
+            <param name="data">待加密字节</param>
+            <param name="encryptKey">加密口令（长度为8）</param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.DataLock.DecryptDES(System.Byte[],System.String)">
+            <summary>
+            使用3DES解密
+            </summary>
+            <param name="data">待解密字节</param>
+            <param name="decryptionKey">解密口令（长度为8）</param>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.FileStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileStatus.FileIsOpen(System.String)">
+            <summary>
+            判断文件是否被打开
+            </summary>
+            <param name="fileFullName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.GetFileHash">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.GetFileHash.FileHash(System.String)">
+            <summary>
+            获得文件Hash值
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.GetFileHash.FileHash(System.IO.FileStream)">
+            <summary>
+            获得文件Hash值
+            </summary>
+            <param name="fileStream"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.SerializeConvert">
+            <summary>
+            序列化转化
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.SerializeConvert.SerializeToBinary(System.Object)">
+            <summary>
+            序列化对象
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.SerializeConvert.SerializeObjectToXmlString``1(System.Object)">
+            <summary>
+            序列化数据对象
+            </summary>
+            <typeparam name="T">序列化类型</typeparam>
+            <param name="obj">数据对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.SerializeConvert.SerializeObjectToXmlByte``1(System.Object)">
+            <summary>
+            序列化数据对象
+            </summary>
+            <typeparam name="T">序列化类型</typeparam>
+            <param name="obj">数据对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.SerializeConvert.DeserializeWithBinary``1(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            将二进制数据反序列化为指定类型对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.SerializeConvert.DeserializeObjectFromXmlString``1(System.String)">
+            <summary>
+            反序列化
+            </summary>
+            <typeparam name="T">反序列化类型</typeparam>
+            <param name="xml">序列化字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.SerializeConvert.DeserializeObjectFromXmlString``1(System.Byte[])">
+            <summary>
+            反序列化
+            </summary>
+            <typeparam name="T">反序列化类型</typeparam>
+            <param name="xml">序列化字节</param>
+            <returns></returns>
+        </member>
+        <member name="T:RRQMSocket.Speed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RRQMSocket.FileInfoTemp">
+            <summary>
+            文件缓冲类
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileInfoTemp.FileName">
+            <summary>
+            文件名称
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileInfoTemp.FileLength">
+            <summary>
+            文件长度
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileInfoTemp.FileSourcePath">
+            <summary>
+            文件原路径
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileInfoTemp.FileHash">
+            <summary>
+            文件哈希值
+            </summary>
+        </member>
+        <member name="P:RRQMSocket.FileInfoTemp.StreamPosition">
+            <summary>
+            当前流位置
+            </summary>
+        </member>
+        <member name="M:RRQMSocket.FileInfoTemp.Save(System.String)">
+            <summary>
+            保存
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:RRQMSocket.FileInfoTemp.Read(System.String)">
+            <summary>
+            读取
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.XmlDownLoad.GetPath">
+            <summary>
+            获取路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMSocket.XmlDownLoad.AttributeStorage(System.String,System.String,System.String)">
+            <summary>
+            按属性节点储存
+            </summary>
+            <param name="NodeName">节点名</param>
+            <param name="Attribute_name">属性名</param>
+            <param name="Attribute_value">属性值</param>
+        </member>
+        <member name="M:RRQMSocket.XmlDownLoad.AttributeStorage(System.String[],System.String[],System.String[])">
+            <summary>
+            长度相等
+            </summary>
+            <param name="NodeName"></param>
+            <param name="Attribute_name"></param>
+            <param name="Attribute_value"></param>
+        </member>
+        <member name="M:RRQMSocket.XmlDownLoad.AttributeStorage(System.String[],System.String[],System.Int32,System.String[][])">
+            <summary>
+            批量存储
+            </summary>
+            <param name="NodeName"></param>
+            <param name="Attribute_name"></param>
+            <param name="AttributeNumber"></param>
+            <param name="Attribute_value"></param>
+        </member>
+        <member name="M:RRQMSocket.XmlDownLoad.RemoveNode(System.String)">
+            <summary>
+            按节点名移除节点
+            </summary>
+            <param name="NodeName"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

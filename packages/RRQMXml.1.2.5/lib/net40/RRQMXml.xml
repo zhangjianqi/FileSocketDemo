@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RRQMXml</name>
+    </assembly>
+    <members>
+        <member name="T:RRQMXml.XmlTool">
+            <summary>
+            xml主类
+            </summary>
+        </member>
+        <member name="M:RRQMXml.XmlTool.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="path">文件路径，包含文件名</param>
+        </member>
+        <member name="M:RRQMXml.XmlTool.AttributeStorage(System.String,System.String,System.String)">
+            <summary>
+            单节点，单属性储存
+            </summary>
+            <param name="NodeName">节点名</param>
+            <param name="Attribute_name">属性名</param>
+            <param name="Attribute_value">属性值</param>
+        </member>
+        <member name="M:RRQMXml.XmlTool.AttributeStorage(System.String,System.String[],System.String[])">
+            <summary>
+            单节点，多属性存储
+            </summary>
+            <param name="NodeName">节点名</param>
+            <param name="Attribute_name">属性集合</param>
+            <param name="Attribute_value">属性值集合</param>
+        </member>
+        <member name="M:RRQMXml.XmlTool.AttributeStorage(System.String[],System.String[],System.String[])">
+            <summary>
+            单节点，单属性多集合存储
+            </summary>
+            <param name="NodeName">节点集合</param>
+            <param name="Attribute_name">属性名集合</param>
+            <param name="Attribute_value">属性值集合</param>
+        </member>
+        <member name="M:RRQMXml.XmlTool.AttributeStorage(System.String[],System.String[],System.Int32,System.String[][])">
+            <summary>
+            多节点，多属性，多集合存储
+            </summary>
+            <param name="NodeName">节点集合</param>
+            <param name="Attribute_name">属性集合</param>
+            <param name="AttributeNumber">每个节点的属性数量</param>
+            <param name="Attribute_value">属性值集合</param>
+        </member>
+        <member name="M:RRQMXml.XmlTool.NodeStorage(System.String,System.String)">
+            <summary>
+            节点值存储
+            </summary>
+            <param name="NodeName">节点名</param>
+            <param name="Text">文本</param>
+        </member>
+        <member name="M:RRQMXml.XmlTool.SearchNode(System.String)">
+            <summary>
+            通过节点取值
+            </summary>
+            <param name="NodeName">节点名</param>
+            <returns>取值失败返回null</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.SearchNumber(System.String,System.String)">
+            <summary>
+            查找数字
+            </summary>
+            <param name="NodeName">节点名</param>
+            <param name="Attribute_name">属性名</param>
+            <returns>取值失败返回0</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.SearchWords(System.String,System.String)">
+            <summary>
+            查找属性值
+            </summary>
+            <param name="NodeName">节点名</param>
+            <param name="Attribute_name">属性名</param>
+            <returns>取值失败返回null</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.SearchBoolean(System.String,System.String)">
+            <summary>
+            查找布尔值
+            </summary>
+            <param name="NodeName">节点名</param>
+            <param name="Attribute_name">属性值</param>
+            <returns>返回查找结果，查询失败返回false</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.SearchWords(System.String[],System.String[])">
+            <summary>
+            查找属性值集合
+            </summary>
+            <param name="NodeName">节点名集合</param>
+            <param name="Attribute_name">属性名集合</param>
+            <returns>文件不在返回null，单个属性不在返回“空”</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.SearchWords(System.String,System.String,System.String)">
+            <summary>
+            通过确切属性值，属性名，查找其他属性值
+            </summary>
+            <param name="Attribute_name1">已知属性名</param>
+            <param name="Attribute_value">已知属性值</param>
+            <param name="Attribute_name2">待查属性名</param>
+            <returns>待查属性值</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.SearchAllAttributes(System.String)">
+            <summary>
+            查找节点的所有属性值
+            </summary>
+            <param name="NodeName">节点 名</param>
+            <returns>返回查找键值对，查询失败返回null</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.SearchBoolean(System.String,System.String,System.String)">
+            <summary>
+            通过确切属性值，属性名，查找其他属性的布尔值
+            </summary>
+            <param name="Attribute_name1">已知属性名</param>
+            <param name="Attribute_value">已知属性值</param>
+            <param name="Attribute_name2">待查属性名</param>
+            <returns>待查布尔值，失败返回false</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.RemoveNode(System.String)">
+            <summary>
+            按节点名移除节点
+            </summary>
+            <param name="NodeName">节点名</param>
+            <returns>是否移除成功</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.RemoveNode(System.String,System.String)">
+            <summary>
+            按确切的属性名，属性值删除节点
+            </summary>
+            <param name="Attribute_name">属性名</param>
+            <param name="Attribute_value">属性值</param>
+            <returns>是否移除成功</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.RemoveNode(System.String,System.DateTime)">
+            <summary>
+            如果节点中有日期属性，把日期之前的节点都删除
+            </summary>
+            <param name="Attribute_name">属性名</param>
+            <param name="dateTime">截止时间</param>
+            <returns>是否删除成功</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.NodeExist(System.String)">
+            <summary>
+            判断节点是否存在
+            </summary>
+            <param name="NodeName">节点名</param>
+            <returns>返回结果</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.RemoveAllNode">
+            <summary>
+            删除所有节点，不包含子节点
+            </summary>
+            <returns>返回删除是否成功</returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.SerializeToBinary(System.Object)">
+            <summary>
+            序列化对象
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.DeserializeWithBinary``1(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            将二进制数据反序列化为指定类型对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMXml.XmlTool.Deserialize(System.Type,System.String)">
+            <summary>  
+            反序列化  
+            </summary>  
+            <param name="type">类型</param>  
+            <param name="xml">XML字符串</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:RRQMXml.XmlTool.Deserialize(System.Type,System.IO.Stream)">
+            <summary>  
+            反序列化  
+            </summary>  
+            <param name="type"></param>
+            <param name="stream"></param>  
+            <returns></returns>  
+        </member>
+        <member name="M:RRQMXml.XmlTool.SerializeToXml(System.Type,System.Object)">
+            <summary>  
+            序列化  
+            </summary>  
+            <param name="type">类型</param>  
+            <param name="obj">对象</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:RRQMXml.XmlTool.SerializeToXmlFile(System.String,System.Type,System.Object)">
+            <summary>
+            序列化对象贮存在Xml文件里
+            </summary>
+            <param name="path">文件路径</param>
+            <param name="type">类型</param>
+            <param name="obj">数据</param>
+        </member>
+        <member name="M:RRQMXml.XmlTool.DeserializeFromXmlFile(System.String,System.Type)">
+            <summary>
+            反序列化xml文件里的对象
+            </summary>
+            <param name="path">文件路径</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

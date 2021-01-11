@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RRQMMVVM</name>
+    </assembly>
+    <members>
+        <member name="T:RRQMMVVM.DelegateCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RRQMMVVM.ExecuteCommand">
+            <summary>
+            绑定命令
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand.#ctor(RRQMMVVM.DelegateCommand)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="E:RRQMMVVM.ExecuteCommand.CanExecuteChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand.CanExecute(System.Object)">
+            <summary>
+            执行测试
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand.Execute(System.Object)">
+            <summary>
+            执行
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:RRQMMVVM.DelegateCommand`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:RRQMMVVM.ExecuteCommand`1">
+            <summary>
+            绑定有参数命令
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand`1.#ctor(RRQMMVVM.DelegateCommand{`0})">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="E:RRQMMVVM.ExecuteCommand`1.CanExecuteChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand`1.CanExecute(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RRQMMVVM.ExecuteCommand`1.Execute(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:RRQMMVVM.RRQMList`1">
+            <summary>
+            继承ObservableCollection的集合
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:RRQMMVVM.RRQMList`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.RRQMList`1.#ctor(System.Collections.Generic.List{`0})">
+            <summary>
+            
+            </summary>
+            <param name="list"></param>
+        </member>
+        <member name="M:RRQMMVVM.RRQMList`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="collection"></param>
+        </member>
+        <member name="T:RRQMMVVM.ViewModelBase`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RRQMMVVM.ViewModelBase`1.View">
+            <summary>
+            目标View
+            </summary>
+        </member>
+        <member name="E:RRQMMVVM.ViewModelBase`1.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ViewModelBase`1.OnPropertyChanged(System.String)">
+            <summary>
+            属性改变时
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:RRQMMVVM.ViewModelBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:RRQMMVVM.ViewModelBase.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ViewModelBase.OnPropertyChanged(System.String)">
+            <summary>
+            属性改变时
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:RRQMMVVM.ViewModelUserControl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:RRQMMVVM.ViewModelUserControl.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ViewModelUserControl.OnPropertyChanged(System.String)">
+            <summary>
+            属性改变时
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:RRQMMVVM.ViewModelWindows">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:RRQMMVVM.ViewModelWindows.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RRQMMVVM.ViewModelWindows.OnPropertyChanged(System.String)">
+            <summary>
+            属性改变时
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+    </members>
+</doc>

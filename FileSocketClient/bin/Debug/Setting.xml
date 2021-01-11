@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<SettingViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ClientIP>127.0.0.1</ClientIP>
+  <ClientPort>7789</ClientPort>
+  <ClientReceiveDir>ClientReceiveDir\</ClientReceiveDir>
+  <IsAutoReceive>true</IsAutoReceive>
+</SettingViewModel>

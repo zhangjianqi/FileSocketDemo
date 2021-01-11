@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSocketClient", "FileSocketClient\FileSocketClient.csproj", "{EFDF9681-E257-4C38-A4A7-AE021AA75463}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFDF9681-E257-4C38-A4A7-AE021AA75463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFDF9681-E257-4C38-A4A7-AE021AA75463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFDF9681-E257-4C38-A4A7-AE021AA75463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFDF9681-E257-4C38-A4A7-AE021AA75463}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBF2E1B6-3295-4FD4-82E5-F49463B7E876}
+	EndGlobalSection
+EndGlobal
