@@ -1,0 +1,137 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="若汝棋茗_Controls"
+                    xmlns:primitives="若汝棋茗_Primitives">
+
+    <Style x:Key="SpeedDialStyle" TargetType="{x:Type controls:SpeedDial}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:SpeedDial}">
+                    <Grid MinWidth="200" MinHeight="200">
+                        <Ellipse />
+                        <primitives:Sector EndAngle="230" Fill="#FF00BE8B" MaxRadiusRatio="0.98" MinRadiusRatio="0.8" StartAngle="149" />
+                        <primitives:Sector EndAngle="320" Fill="#FF14BEFF" MaxRadiusRatio="0.98" MinRadiusRatio="0.8" StartAngle="230" />
+                        <primitives:Sector EndAngle="391" Fill="#FFFF2975" MaxRadiusRatio="0.98" MinRadiusRatio="0.8" StartAngle="320" />
+                        <primitives:Sector EndAngle="{TemplateBinding PointerAngle}"
+                                           Fill="Orange" MaxRadiusRatio="0.8" MinRadiusRatio="0.7" StartAngle="149" />
+                        <primitives:Dial MaxRadiusRatio="0.95" MinRadiusRatio="0.7" StartAngle="150" Stroke="Black" StrokeThickness="3"
+                                         TickAngle="30" TickCount="9" />
+                        <primitives:Dial MaxRadiusRatio="0.95" MinRadiusRatio="0.8" StartAngle="165" Stroke="Black" StrokeThickness="2"
+                                         TickAngle="30" TickCount="8" />
+                        <primitives:Dial MaxRadiusRatio="0.95" MinRadiusRatio="0.8" StartAngle="157.5" Stroke="Black" StrokeThickness="1"
+                                         TickAngle="15" TickCount="16" />
+                        <primitives:DialText Text="0,30,60,90,120,150,180,210,240" FontSize="17" RadiusRatio="0.6" StartAngle="150" TickAngle="30" />
+                        <primitives:DialText Text="15,45,75,105,135,165,195,225" FontSize="10" RadiusRatio="0.7" StartAngle="165" TickAngle="30" />
+                        <primitives:DialText Text="单位（MB）" FontSize="20" RadiusRatio="0.5" StartAngle="80" />
+                        <primitives:DialText Text="{Binding Speed, StringFormat=0.00MB/s}"
+                                             FontSize="12" RadiusRatio="0.3" StartAngle="80" />
+                        <primitives:Pointer x:Name="pointer"
+                                            RatioAngle="{TemplateBinding PointerAngle}"
+                                            RatioCenter="0.2,0.5">
+                            <primitives:Pointer.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Blue" />
+                            </primitives:Pointer.Effect>
+                            <primitives:Pointer.Fill>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Offset="0" Color="#FF3C57F5" />
+                                    <GradientStop Offset="1" Color="#FFF38F8A" />
+                                </LinearGradientBrush>
+                            </primitives:Pointer.Fill>
+                        </primitives:Pointer>
+                        <Ellipse Height="10" Width="10" Fill="White" />
+                        <Ellipse Height="8" Width="8" Stroke="DarkCyan" StrokeThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+   
+    <Style x:Key="ScrollBarThumbVertical" TargetType="{x:Type Thumb}">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border x:Name="rectangle"
+                            Height="{TemplateBinding Height}"
+                            Width="8" CornerRadius="4" SnapsToDevicePixels="True" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Opacity" Value="1" />
+                            <Setter TargetName="rectangle" Property="Background" Value="#A6A6A6" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="false">
+                            <Setter Property="Opacity" Value="0.2" />
+                            <Setter TargetName="rectangle" Property="Background" Value="#A6A6A6" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="true">
+                            <Setter TargetName="rectangle" Property="Background" Value="#606060" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ScrollBar}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid x:Name="Bg" SnapsToDevicePixels="true">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.00001*" />
+                        </Grid.RowDefinitions>
+                        <Border Width="8" Background="Transparent" BorderThickness="0" />
+
+                        <Track x:Name="PART_Track" IsDirectionReversed="true"
+                               IsEnabled="{TemplateBinding IsMouseOver}">
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource ScrollBarThumbVertical}" />
+                            </Track.Thumb>
+                        </Track>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="ScrollViewer">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid x:Name="Grid" Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                                Content="{TemplateBinding Content}"
+                                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                                Margin="{TemplateBinding Padding}"
+                                                CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                CanHorizontallyScroll="False" CanVerticallyScroll="False"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Row="0" Grid.Column="1" AutomationProperties.AutomationId="VerticalScrollBar"
+                                   Cursor="Arrow"
+                                   Maximum="{TemplateBinding ScrollableHeight}"
+                                   Minimum="0"
+                                   ViewportSize="{TemplateBinding ViewportHeight}"
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

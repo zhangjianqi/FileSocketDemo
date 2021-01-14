@@ -1,0 +1,19 @@
+﻿<Application x:Class="FileSocketClient.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FileSocketClient"
+             xmlns:viewmodels="clr-namespace:FileSocketClient.ViewModels"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <viewmodels:MainViewModel x:Key="viewModel" />
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="Dictionary.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>
